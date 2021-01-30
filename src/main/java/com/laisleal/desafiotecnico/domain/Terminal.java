@@ -1,18 +1,16 @@
 package com.laisleal.desafiotecnico.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Terminal implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Terminal {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	private Integer logic;
 	private String serial;
 	private String model;
@@ -27,8 +25,10 @@ public class Terminal implements Serializable{
 	public Terminal() {
 	}
 
-	public Terminal(Integer logic, String serial, String model, Integer sam, String ptid, Integer plat, String version, Integer mxr, Integer mxf, String VERFM) {
+	public Terminal(Integer id, Integer logic, String serial, String model, Integer sam, String ptid, Integer plat,
+					String version, Integer mxr, Integer mxf, String vERFM) {
 		super();
+		this.id = id;
 		this.logic = logic;
 		this.serial = serial;
 		this.model = model;
@@ -38,7 +38,15 @@ public class Terminal implements Serializable{
 		this.version = version;
 		this.mxr = mxr;
 		this.mxf = mxf;
-		this.VERFM = VERFM;
+		VERFM = vERFM;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getLogic() {
@@ -125,7 +133,7 @@ public class Terminal implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((logic == null) ? 0 : logic.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -138,12 +146,11 @@ public class Terminal implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Terminal other = (Terminal) obj;
-		if (logic == null) {
-			if (other.logic != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!logic.equals(other.logic))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
-
 }
