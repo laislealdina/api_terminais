@@ -34,9 +34,14 @@ public class TerminalResource {
 	
 	@RequestMapping(value="/{logic}", method=RequestMethod.GET)
 	public ResponseEntity<Terminal> find(@PathVariable Integer logic) {
-		System.err.println(logic);
 		Terminal terminal = service.find(logic);
 		return ResponseEntity.ok().body(terminal);
+	}
+	
+	@RequestMapping(value="/{logic}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Terminal obj, @PathVariable Integer logic) {
+		Terminal terminal = service.update(obj,logic);
+		return ResponseEntity.noContent().build();
 	}
 			
 
