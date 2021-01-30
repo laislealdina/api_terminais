@@ -24,4 +24,10 @@ public class TerminalService {
 										Integer.valueOf(txt_terminal[5]), txt_terminal[6], Integer.valueOf(txt_terminal[7]), Integer.valueOf(txt_terminal[8]), txt_terminal[9]);
 		return terminal;
 	}
+	
+	public Terminal find(Integer logic) {
+		Terminal terminal = repository.findByLogic(logic);
+		System.err.println(terminal.getSerial());
+		return terminal;
+	}
 }

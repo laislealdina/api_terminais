@@ -8,4 +8,6 @@ import com.laisleal.desafiotecnico.domain.Terminal;
 @Repository
 public interface TerminalRepository extends JpaRepository<Terminal, Integer> {
 
+	Terminal findByLogic(Integer logic);
+	
 }
