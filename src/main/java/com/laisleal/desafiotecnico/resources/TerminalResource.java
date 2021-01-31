@@ -21,7 +21,7 @@ public class TerminalResource {
 	
 	@Autowired
 	private TerminalService service;
-	@RequestMapping(method=RequestMethod.POST, consumes="text/html;charset=UTF-8", produces="application/json")
+	@RequestMapping(method=RequestMethod.POST, consumes="text/plain;charset=UTF-8", produces="application/json")
 	public ResponseEntity<Terminal> insert(@RequestBody String obj) {
 		Terminal terminal = service.fromText(obj);
 		terminal = service.insert(terminal);
