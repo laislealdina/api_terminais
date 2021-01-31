@@ -1,11 +1,8 @@
 package com.laisleal.desafiotecnico.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,9 +36,14 @@ public class TerminalResource {
 	}
 	
 	@RequestMapping(value="/{logic}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Terminal obj, @PathVariable Integer logic) {
+	public ResponseEntity<Terminal> update(@RequestBody Terminal obj, @PathVariable Integer logic) {
 		Terminal terminal = service.update(obj,logic);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok().body(terminal);
+	}
+	
+	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable Integer logic) {
+		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("A função excluir não está habilitada.");
 	}
 			
 
