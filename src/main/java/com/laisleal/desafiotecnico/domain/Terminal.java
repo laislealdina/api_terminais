@@ -4,6 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.annotations.Target;
+
 
 @Entity
 public class Terminal {
@@ -11,13 +18,27 @@ public class Terminal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotNull(message="Preenchimento do campo Logic é obrigatório.")
+	@Min(value=0, message = "Logic não pode ser um valor negativo.")
 	private Integer logic;
+	
+	@NotEmpty(message="Preenchimento do campo serial é obrigatório.")
 	private String serial;
+	
+	@NotEmpty(message="Preenchimento do campo model é obrigatório.")
 	private String model;
+	
+	@NotNull(message="Preenchimento do campo sam é obrigatório.")
 	private Integer sam;
+	
 	private String ptid;
 	private Integer plat;
+	
+	@NotEmpty(message="Preenchimento do campo version é obrigatório.")
 	private String version;
+	
+
 	private Integer mxr;
 	private Integer mxf;
 	private String VERFM;

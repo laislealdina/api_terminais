@@ -4,11 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
+
+import com.laisleal.desafiotecnico.services.exceptions.ConstraintViolatedException;
 import com.laisleal.desafiotecnico.services.exceptions.ErrorHandled;
 import com.laisleal.desafiotecnico.services.exceptions.ObjectNoFoundException;
 
@@ -22,6 +22,12 @@ public class ExceptionHandlerResource extends Throwable{
 	public ResponseEntity<ErrorHandled> ObjectNoFoundException(ObjectNoFoundException e, HttpServletRequest request) {
 		ErrorHandled error = new ErrorHandled(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+	
+	@ExceptionHandler(ConstraintViolatedException.class)
+	public ResponseEntity<ErrorHandled> ConstraintViolatedException(ConstraintViolatedException e, HttpServletRequest request) {
+		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
 	
 }

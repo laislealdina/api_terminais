@@ -2,6 +2,8 @@ package com.laisleal.desafiotecnico.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,8 @@ public class TerminalResource {
 	
 	@Autowired
 	private TerminalService service;
-	@RequestMapping(method=RequestMethod.POST, consumes="text/plain;charset=UTF-8", produces="application/json")
+	
+	@RequestMapping(method=RequestMethod.POST, headers="Content-Type=text/plain;charset=UTF-8", produces="application/json")
 	public ResponseEntity<Terminal> insert(@RequestBody String obj) {
 		Terminal terminal = service.fromText(obj);
 		terminal = service.insert(terminal);
@@ -36,7 +39,7 @@ public class TerminalResource {
 	}
 	
 	@RequestMapping(value="/{logic}", method=RequestMethod.PUT)
-	public ResponseEntity<Terminal> update(@RequestBody Terminal obj, @PathVariable Integer logic) {
+	public ResponseEntity<Terminal> update(@Valid @RequestBody Terminal obj, @PathVariable Integer logic) {
 		Terminal terminal = service.update(obj,logic);
 		return ResponseEntity.ok().body(terminal);
 	}
