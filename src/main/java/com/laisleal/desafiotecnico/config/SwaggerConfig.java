@@ -16,7 +16,11 @@ public class SwaggerConfig {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
+<<<<<<< HEAD
 				.apis(RequestHandlerSelectors.basePackage("com.laisleal.desafiotecnico.resources"))
+=======
+				.apis(RequestHandlerSelectors.any())
+>>>>>>> 266a2998a61baa1dd8f2087cab06df79b3cc1e5e
 				.paths(PathSelectors.any())
 				.build();
 	}
