@@ -1,6 +1,7 @@
 package com.laisleal.desafiotecnico.resources;
 
 import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,7 @@ public class TerminalResource {
 	
 	@Autowired
 	private TerminalService service;
-	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST, consumes="text/html;charset=UTF-8", produces="application/json")
 	public ResponseEntity<Terminal> insert(@RequestBody String obj) {
 		Terminal terminal = service.fromText(obj);
 		terminal = service.insert(terminal);
