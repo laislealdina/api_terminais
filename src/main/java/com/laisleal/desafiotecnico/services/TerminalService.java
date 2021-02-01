@@ -1,5 +1,7 @@
 package com.laisleal.desafiotecnico.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,6 @@ public class TerminalService {
 		if (terminal == null) {
 			throw new ObjectNoFoundException("Objeto não encontrado! Logic: " + logic + ", Tipo: " + Terminal.class.getName());
 		}
-		
 		return terminal;
 	}
 	
@@ -65,9 +66,6 @@ public class TerminalService {
 	}
 
 	public Terminal update(Terminal obj, Integer logic) {
-		
-		
-		
 		Terminal newTerminal = find(logic);
 		obj.setId(newTerminal.getId());
 		newTerminal = updateData(newTerminal, obj);
@@ -109,6 +107,11 @@ public class TerminalService {
 		}
 		
 		return newTerminal;
+	}
+	
+	public List<Terminal> findAll() {
+		List<Terminal> list = repository.findAll();
+		return list;
 	}
 
 }
