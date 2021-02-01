@@ -7,10 +7,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.annotations.Target;
-
 
 @Entity
 public class Terminal {
@@ -40,14 +36,14 @@ public class Terminal {
 	
 
 	private Integer mxr;
-	private Integer mxf;
+	private String mxf;
 	private String VERFM;
 	
 	public Terminal() {
 	}
 
 	public Terminal(Integer id, Integer logic, String serial, String model, Integer sam, String ptid, Integer plat,
-					String version, Integer mxr, Integer mxf, String vERFM) {
+					String version, Integer mxr, String mxf, String vERFM) {
 		super();
 		this.id = id;
 		this.logic = logic;
@@ -134,11 +130,11 @@ public class Terminal {
 		this.mxr = mxr;
 	}
 
-	public Integer getMxf() {
+	public String getMxf() {
 		return mxf;
 	}
 
-	public void setMxf(Integer mxf) {
+	public void setMxf(String mxf) {
 		this.mxf = mxf;
 	}
 

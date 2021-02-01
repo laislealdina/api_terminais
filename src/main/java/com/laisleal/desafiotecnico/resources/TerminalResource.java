@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.laisleal.desafiotecnico.domain.Terminal;
+import com.laisleal.desafiotecnico.dto.TerminalDTO;
 import com.laisleal.desafiotecnico.services.TerminalService;
 
 import io.swagger.annotations.ApiOperation;
@@ -33,11 +34,13 @@ public class TerminalResource {
 			@ApiResponse(code = 400, message = "Faltando preencher campo obrigatório.")})
 	@ApiOperation(value="Insere um novo Terminal.")
 	@RequestMapping(method=RequestMethod.POST, headers="Content-Type=text/plain;charset=UTF-8", produces="application/json")
-	public ResponseEntity<Terminal> insert(@RequestBody String obj) {
+	public ResponseEntity<TerminalDTO> insert(@RequestBody String obj) {
+//		System.err.println("sdsdfsdf");
 		Terminal terminal = service.fromText(obj);
 		terminal = service.insert(terminal);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(terminal.getLogic()).toUri();
-		return ResponseEntity.created(uri).body(terminal);
+		TerminalDTO terminalDTO = new TerminalDTO(terminal);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{logic}").buildAndExpand(terminalDTO.getLogic()).toUri();
+		return ResponseEntity.created(uri).body(terminalDTO);
 	}
 	@ApiResponses(value = {
 			@ApiResponse(code = 404, message = "Terminal não encontrado.") })

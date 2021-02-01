@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.laisleal.desafiotecnico.domain.Terminal;
+import com.laisleal.desafiotecnico.dto.TerminalDTO;
 import com.laisleal.desafiotecnico.repositories.TerminalRepository;
 import com.laisleal.desafiotecnico.services.exceptions.ConstraintViolatedException;
 import com.laisleal.desafiotecnico.services.exceptions.ObjectNoFoundException;
@@ -17,18 +18,21 @@ public class TerminalService {
 	private TerminalRepository repository;
 
 	public Terminal insert(Terminal obj) {
+	
+		
 		Terminal terminal = repository.save(obj);
 		return terminal;
 	}
 
 	public Terminal fromText(String obj) {
+		
 		String[] txt_terminal = obj.split(";");
 
 		validate(txt_terminal);
 		
-		Terminal terminal = new Terminal(null, Integer.valueOf(txt_terminal[0]), txt_terminal[1], txt_terminal[2],
+		Terminal terminal = new Terminal(null,Integer.valueOf(txt_terminal[0]), txt_terminal[1], txt_terminal[2],
 				Integer.valueOf(txt_terminal[3]), txt_terminal[4], Integer.valueOf(txt_terminal[5]), txt_terminal[6],
-				Integer.valueOf(txt_terminal[7]), Integer.valueOf(txt_terminal[8]), txt_terminal[9]);
+				Integer.valueOf(txt_terminal[7]), txt_terminal[8], txt_terminal[9]);
 	
 		return terminal;
 	}
