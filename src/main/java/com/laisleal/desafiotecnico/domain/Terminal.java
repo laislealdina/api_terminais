@@ -25,7 +25,6 @@ public class Terminal {
 	@NotEmpty(message="Preenchimento do campo model é obrigatório.")
 	private String model;
 	
-	@NotNull(message="Preenchimento do campo sam é obrigatório.")
 	private Integer sam;
 	
 	private String ptid;
