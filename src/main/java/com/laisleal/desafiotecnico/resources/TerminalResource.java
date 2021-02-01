@@ -19,6 +19,8 @@ import com.laisleal.desafiotecnico.domain.Terminal;
 import com.laisleal.desafiotecnico.services.TerminalService;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value="/v1/Terminal")
@@ -27,6 +29,8 @@ public class TerminalResource {
 	@Autowired
 	private TerminalService service;
 	
+	@ApiResponses(value = {
+			@ApiResponse(code = 400, message = "Faltando preencher campo obrigatório.")})
 	@ApiOperation(value="Insere um novo Terminal.")
 	@RequestMapping(method=RequestMethod.POST, headers="Content-Type=text/plain;charset=UTF-8", produces="application/json")
 	public ResponseEntity<Terminal> insert(@RequestBody String obj) {
@@ -35,7 +39,8 @@ public class TerminalResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(terminal.getLogic()).toUri();
 		return ResponseEntity.created(uri).body(terminal);
 	}
-	
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Terminal não encontrado.") })
 	@ApiOperation(value="Busca Terminal por Logic.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.GET)
 	public ResponseEntity<Terminal> find(@PathVariable Integer logic) {
@@ -43,6 +48,8 @@ public class TerminalResource {
 		return ResponseEntity.ok().body(terminal);
 	}
 	
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Terminal não encontrado.") })
 	@ApiOperation(value="Atualiza dados do Terminal por Logic.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.PUT)
 	public ResponseEntity<Terminal> update(@Valid @RequestBody Terminal obj, @PathVariable Integer logic) {
