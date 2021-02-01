@@ -1,6 +1,7 @@
 package com.laisleal.desafiotecnico.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.laisleal.desafiotecnico.domain.Terminal;
 import com.laisleal.desafiotecnico.services.TerminalService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value="/v1/Terminal")
 public class TerminalResource {
@@ -24,6 +27,7 @@ public class TerminalResource {
 	@Autowired
 	private TerminalService service;
 	
+	@ApiOperation(value="Insere um novo Terminal.")
 	@RequestMapping(method=RequestMethod.POST, headers="Content-Type=text/plain;charset=UTF-8", produces="application/json")
 	public ResponseEntity<Terminal> insert(@RequestBody String obj) {
 		Terminal terminal = service.fromText(obj);
@@ -32,22 +36,32 @@ public class TerminalResource {
 		return ResponseEntity.created(uri).body(terminal);
 	}
 	
+	@ApiOperation(value="Busca Terminal por Logic.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.GET)
 	public ResponseEntity<Terminal> find(@PathVariable Integer logic) {
 		Terminal terminal = service.find(logic);
 		return ResponseEntity.ok().body(terminal);
 	}
 	
+	@ApiOperation(value="Atualiza dados do Terminal por Logic.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.PUT)
 	public ResponseEntity<Terminal> update(@Valid @RequestBody Terminal obj, @PathVariable Integer logic) {
 		Terminal terminal = service.update(obj,logic);
 		return ResponseEntity.ok().body(terminal);
 	}
 	
+	@ApiOperation(value="Função deletar desabilitada.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable Integer logic) {
 		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("A função excluir não está habilitada.");
 	}
-			
+	
+	@ApiOperation(value="Retorna todos os Terminais cadastrados.")
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<Terminal>> findAll() {
+		List<Terminal> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+		
+	}
 
 }

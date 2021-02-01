@@ -25,6 +25,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 	
+//	Colocando um descrição mais clara para cada Status HTTP na documentação
 	private final ResponseMessage m201 = customMessage1();
 	private final ResponseMessage m204put = simpleMessage(204, "Atualização ok");
 	private final ResponseMessage m204del = simpleMessage(204, "Deleção ok");
@@ -47,7 +48,8 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.basePackage("com.laisleal.desafiotecnico.resources"))
 				.paths(PathSelectors.any()).build().apiInfo(apiInfo());
 	}
-
+	
+// Dando um título, descrição, versão para documentação da API de Terminal
 	private ApiInfo apiInfo() {
 		return new ApiInfo("API de Terminal em Spring Boot",
 				"Esta API é utilizada para cadastrar, editar e listar Terminais.",
@@ -63,6 +65,7 @@ public class SwaggerConfig {
 		return new ResponseMessageBuilder().code(code).message(msg).build();
 	}
 	
+//	Indicando na documentação que a requisição 201 retorna a URI do recurso criado.
 	private ResponseMessage customMessage1() {
 		Map<String, Header> map = new HashMap();
 		map.put("location", new Header("location", "URI do novo recurso", new ModelRef("string")));
