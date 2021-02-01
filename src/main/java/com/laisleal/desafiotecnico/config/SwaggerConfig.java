@@ -1,10 +1,15 @@
 package com.laisleal.desafiotecnico.config;
 
+import java.util.Collections;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -14,14 +19,19 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-<<<<<<< HEAD
+		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.laisleal.desafiotecnico.resources"))
-=======
-				.apis(RequestHandlerSelectors.any())
->>>>>>> 266a2998a61baa1dd8f2087cab06df79b3cc1e5e
-				.paths(PathSelectors.any())
-				.build();
+				.paths(PathSelectors.any()).build().apiInfo(apiInfo());
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfo("API de Terminal em Spring Boot",
+				"Esta API é utilizada para cadastrar, editar, deletar e listar Terminais.",
+				"Versão 1.0",
+				"",
+				new Contact("Lais Leal", "", "laisdina@id.uff.br"),
+				"Uso permitido para a Conductor.",
+				"aa",
+				Collections.EMPTY_LIST);
 	}
 }
