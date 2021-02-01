@@ -35,7 +35,6 @@ public class TerminalResource {
 	@ApiOperation(value="Insere um novo Terminal.")
 	@RequestMapping(method=RequestMethod.POST, headers="Content-Type=text/plain;charset=UTF-8", produces="application/json")
 	public ResponseEntity<TerminalDTO> insert(@RequestBody String obj) {
-//		System.err.println("sdsdfsdf");
 		Terminal terminal = service.fromText(obj);
 		terminal = service.insert(terminal);
 		TerminalDTO terminalDTO = new TerminalDTO(terminal);
@@ -60,10 +59,10 @@ public class TerminalResource {
 		return ResponseEntity.ok().body(terminal);
 	}
 	
-	@ApiOperation(value="Função deletar desabilitada.")
+	@ApiOperation(value="Função excluir não está implementada.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable Integer logic) {
-		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("A função excluir não está habilitada.");
+		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Função excluir não está implementada.");
 	}
 	
 	@ApiOperation(value="Retorna todos os Terminais cadastrados.")
