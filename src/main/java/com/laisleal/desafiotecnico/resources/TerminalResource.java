@@ -33,6 +33,7 @@ public class TerminalResource {
 	@ApiResponses(value = {
 			@ApiResponse(code = 400, message = "Faltando preencher campo obrigatório.")})
 	@ApiOperation(value="Insere um novo Terminal.")
+	
 	@RequestMapping(method=RequestMethod.POST, headers="Content-Type=text/plain;charset=UTF-8", produces="application/json")
 	public ResponseEntity<TerminalDTO> insert(@RequestBody String obj) {
 		Terminal terminal = service.fromText(obj);
@@ -54,9 +55,10 @@ public class TerminalResource {
 			@ApiResponse(code = 404, message = "Terminal não encontrado.") })
 	@ApiOperation(value="Atualiza dados do Terminal por Logic.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.PUT)
-	public ResponseEntity<Terminal> update(@Valid @RequestBody Terminal obj, @PathVariable Integer logic) {
+	public ResponseEntity<TerminalDTO> update(@Valid @RequestBody Terminal obj, @PathVariable Integer logic) {
 		Terminal terminal = service.update(obj,logic);
-		return ResponseEntity.ok().body(terminal);
+		TerminalDTO terminalDTO = new TerminalDTO(terminal);
+		return ResponseEntity.ok().body(terminalDTO);
 	}
 	
 	@ApiOperation(value="Função excluir não está implementada.")
@@ -66,7 +68,7 @@ public class TerminalResource {
 	}
 	
 	@ApiOperation(value="Retorna todos os Terminais cadastrados.")
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/lista", method=RequestMethod.GET)
 	public ResponseEntity<List<Terminal>> findAll() {
 		List<Terminal> list = service.findAll();
 		return ResponseEntity.ok().body(list);
