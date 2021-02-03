@@ -117,5 +117,9 @@ public class TerminalService {
 		List<Terminal> list = repository.findAll();
 		return list;
 	}
+	
+	public void delete(Terminal obj) {
+		repository.delete(obj);
+	}
 
 }

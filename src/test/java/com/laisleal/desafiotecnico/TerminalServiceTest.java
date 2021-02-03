@@ -44,17 +44,19 @@ public class TerminalServiceTest {
 		assertEquals("222", terminal3.getSerial());
 		assertEquals("PWWIN", terminal3.getModel());
 		assertEquals("V812.1", terminal3.getVersion());
+		
+		service.delete(terminal);
 	}
 	
 	@Test
 	public void testGet() {
-		Terminal terminal = service.find(44332211);
+		Terminal terminal = service.find(666666);
 		assertNotNull(terminal);
-		assertEquals(44332211, terminal.getLogic());;	}
+		assertEquals(666666, terminal.getLogic());;	}
 
 	@Test
 	public void testList() {
 		List<Terminal> terminais = service.findAll();
-		assertEquals(10, terminais.size());
+		assertEquals(3, terminais.size());
 	}
 }

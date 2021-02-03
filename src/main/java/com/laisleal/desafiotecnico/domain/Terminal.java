@@ -42,7 +42,7 @@ public class Terminal {
 	}
 
 	public Terminal(Integer id, Integer logic, String serial, String model, Integer sam, String ptid, Integer plat,
-					String version, Integer mxr, String mxf, String vERFM) {
+					String version, Integer mxr, String mxf, String VERFM) {
 		super();
 		this.id = id;
 		this.logic = logic;
@@ -54,7 +54,7 @@ public class Terminal {
 		this.version = version;
 		this.mxr = mxr;
 		this.mxf = mxf;
-		VERFM = vERFM;
+		VERFM = this.VERFM;
 	}
 
 	public Integer getId() {
@@ -169,4 +169,13 @@ public class Terminal {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Terminal [logic=" + logic + ", serial=" + serial + ", model=" + model + ", sam=" + sam + ", ptid="
+				+ ptid + ", plat=" + plat + ", version=" + version + ", mxr=" + mxr + ", mxf=" + mxf + ", VERFM="
+				+ VERFM + "]";
+	}
+	
+	
 }
