@@ -62,11 +62,11 @@ public class TerminalResource {
 		return ResponseEntity.ok().body(terminalDTO);
 	}
 	
-//	@ApiOperation(value="Função excluir não está implementada.")
-//	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
-//	public ResponseEntity<String> delete(@PathVariable Integer logic) {
-//		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Função excluir não está implementada.");
-//	}
+	@ApiOperation(value="Função excluir não está implementada.")
+	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable Integer logic) {
+		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body("Função excluir não está implementada.");
+	}
 	
 	@ApiOperation(value="Retorna todos os Terminais cadastrados.")
 	@RequestMapping(value="/lista", method=RequestMethod.GET)
@@ -77,11 +77,4 @@ public class TerminalResource {
 	}
 	
 	
-	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Integer logic) {
-		service.delete(logic);
-		
-		return ResponseEntity.noContent().build();
-	}
-
 }
