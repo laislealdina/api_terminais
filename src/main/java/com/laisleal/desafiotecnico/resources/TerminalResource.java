@@ -46,9 +46,10 @@ public class TerminalResource {
 			@ApiResponse(code = 404, message = "Terminal não encontrado.") })
 	@ApiOperation(value="Busca Terminal por Logic.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.GET)
-	public ResponseEntity<Terminal> find(@PathVariable Integer logic) {
+	public ResponseEntity<TerminalDTO> find(@PathVariable Integer logic) {
 		Terminal terminal = service.find(logic);
-		return ResponseEntity.ok().body(terminal);
+		TerminalDTO terminalDTO = new TerminalDTO(terminal);
+		return ResponseEntity.ok().body(terminalDTO);
 	}
 	
 	@ApiResponses(value = {
