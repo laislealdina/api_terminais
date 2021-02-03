@@ -10,6 +10,7 @@ import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.laisleal.desafiotecnico.services.exceptions.ConstraintViolatedException;
 import com.laisleal.desafiotecnico.services.exceptions.ErrorHandled;
@@ -43,6 +44,13 @@ public class ExceptionHandlerResource extends Throwable{
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
 	public ResponseEntity<ErrorHandled> HttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e, HttpServletRequest request) {
 		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "O Endpoint não aceita como entrada esse formato de dados.", System.currentTimeMillis());
+	
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
+	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
+	public ResponseEntity<ErrorHandled> MethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
+		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "Valor para chave Logic é muito grande.", System.currentTimeMillis());
 	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
