@@ -17,6 +17,7 @@ public class Terminal {
 	
 	@NotNull(message="Preenchimento do campo Logic é obrigatório.")
 	@Min(value=0, message = "Logic não pode ser um valor negativo.")
+
 	private Integer logic;
 	
 	@NotEmpty(message="Preenchimento do campo serial é obrigatório.")
@@ -172,9 +173,7 @@ public class Terminal {
 
 	@Override
 	public String toString() {
-		return "Terminal [logic=" + logic + ", serial=" + serial + ", model=" + model + ", sam=" + sam + ", ptid="
-				+ ptid + ", plat=" + plat + ", version=" + version + ", mxr=" + mxr + ", mxf=" + mxf + ", VERFM="
-				+ VERFM + "]";
+		return this.logic + ";" + this.serial +";"+ this.model +";"+ this.sam +";"+ this.ptid +";"+ this.plat +";"+ this.version +";"+ this.mxr +";" + this.mxf +";"+ this.VERFM;
 	}
 	
 	

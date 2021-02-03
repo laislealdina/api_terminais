@@ -26,13 +26,34 @@ public class TerminalService {
 
 	public Terminal fromText(String obj) {
 		
-		String[] txt_terminal = obj.split(";");
-
+		obj = obj.replaceAll("[^a-zA-Z0-9;.]","");
+		String[] txt_terminal = obj.split(";",-1);
+		
 		validate(txt_terminal);
 		
-		Terminal terminal = new Terminal(null,Integer.valueOf(txt_terminal[0]), txt_terminal[1], txt_terminal[2],
-				Integer.valueOf(txt_terminal[3]), txt_terminal[4], Integer.valueOf(txt_terminal[5]), txt_terminal[6],
-				Integer.valueOf(txt_terminal[7]), txt_terminal[8], txt_terminal[9]);
+		Integer logic =  ( !txt_terminal[0].isEmpty())  ?  Integer.valueOf(txt_terminal[0])  : null;
+		String serial =  ( !txt_terminal[1].isEmpty())  ?  txt_terminal[1] 				     : null;
+		String model =   ( !txt_terminal[2].isEmpty())  ?  txt_terminal[2] 				     : null;
+		Integer sam =    ( !txt_terminal[3].isEmpty())  ?  Integer.valueOf(txt_terminal[3])  : null;
+		String ptid =    ( !txt_terminal[4].isEmpty())  ?  txt_terminal[4] 				     : null;
+		Integer plat =   ( !txt_terminal[5].isEmpty())  ?  Integer.valueOf(txt_terminal[5])  : null;
+		String version = ( !txt_terminal[6].isEmpty())  ?  txt_terminal[6] 				     : null;
+		Integer mxr =    ( !txt_terminal[7].isEmpty())  ?  Integer.valueOf(txt_terminal[7])  : null;
+		String mxf =     ( !txt_terminal[8].isEmpty())  ?  txt_terminal[8] 				     : null;
+		String verfm =   ( !txt_terminal[9].isEmpty())  ?  txt_terminal[9] 				     : null;
+		
+		
+		Terminal terminal = new Terminal(null,
+										logic,
+										serial,
+										model,
+										sam,
+										ptid,
+										plat,
+										version,
+										mxr,
+										mxf,
+										verfm);
 	
 		return terminal;
 	}
@@ -52,7 +73,7 @@ public class TerminalService {
 			throw new ConstraintViolatedException("Preenchimento do campo Logic é obrigatório.");
 		}
 		if (!terminal[0].matches("[0-9]*")) {
-			throw new ConstraintViolatedException("O campo Logic deve conter um valor númerico.");
+			throw new ConstraintViolatedException("O campo Logic deve conter um valor númerico. " + terminal[0]);
 		}
 		
 		if (terminal[1] == null || terminal[1].isEmpty()) {
@@ -118,8 +139,8 @@ public class TerminalService {
 		return list;
 	}
 	
-	public void delete(Terminal obj) {
-		repository.delete(obj);
+	public void delete(Integer logic) {
+		repository.deleteByLogic(logic);
 	}
 
 }
