@@ -4,13 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-
-import com.laisleal.desafiotecnico.resources.exceptions.ValidationError;
 
 import com.laisleal.desafiotecnico.services.exceptions.ConstraintViolatedException;
 import com.laisleal.desafiotecnico.services.exceptions.ErrorHandled;
@@ -33,6 +31,13 @@ public class ExceptionHandlerResource extends Throwable{
 		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<ErrorHandled> HttpMessageNotReadableException(HttpMessageNotReadableException e, HttpServletRequest request) {
+		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
+	
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ValidationError> Validation(MethodArgumentNotValidException e, HttpServletRequest request) {
@@ -44,5 +49,7 @@ public class ExceptionHandlerResource extends Throwable{
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
+	
+	
 	
 }
