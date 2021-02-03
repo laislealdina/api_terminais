@@ -42,7 +42,7 @@ public class ExceptionHandlerResource extends Throwable{
 	
 	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
 	public ResponseEntity<ErrorHandled> HttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e, HttpServletRequest request) {
-		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "O Endpoint POST não aceita dados no formato JSON.", System.currentTimeMillis());
+		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "O Endpoint POST não aceita dados de entrada no formato JSON.", System.currentTimeMillis());
 	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
