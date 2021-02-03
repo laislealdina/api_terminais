@@ -54,7 +54,7 @@ public class Terminal {
 		this.version = version;
 		this.mxr = mxr;
 		this.mxf = mxf;
-		VERFM = this.VERFM;
+		this.VERFM = VERFM;
 	}
 
 	public Integer getId() {
