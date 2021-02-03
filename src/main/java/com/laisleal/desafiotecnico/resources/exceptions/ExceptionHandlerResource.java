@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +39,14 @@ public class ExceptionHandlerResource extends Throwable{
 	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
+	
+	@ExceptionHandler(HttpMediaTypeNotSupportedException.class)
+	public ResponseEntity<ErrorHandled> HttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e, HttpServletRequest request) {
+		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "O Endpoint POST não aceita dados no formato JSON.", System.currentTimeMillis());
+	
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ValidationError> Validation(MethodArgumentNotValidException e, HttpServletRequest request) {
