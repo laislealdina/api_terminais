@@ -1,7 +1,7 @@
 
 # API de Terminais
 
-[![Build Status](https://desafio-tecnico-lais.herokuapp.com/swagger-ui.html)](https://desafio-tecnico-lais.herokuapp.com/swagger-ui.html)
+[![Build Status](https://desafio-tecnico-lais.herokuapp.com/swagger-ui.html#/)](https://desafio-tecnico-lais.herokuapp.com/swagger-ui.html#/)
 
 🚧  Status: Em Produção. 🚧
 
