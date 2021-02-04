@@ -1,7 +1,7 @@
 
 # API de Terminais
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://desafio-tecnico-lais.herokuapp.com/swagger-ui.html)](https://desafio-tecnico-lais.herokuapp.com/swagger-ui.html)
 
 🚧  Status: Em Produção. 🚧
 
