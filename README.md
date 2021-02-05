@@ -9,8 +9,11 @@ API para inserir, alterar, consultar e listar dados de Terminais.
 # Features:
 
   [x] Buscar dados de um terminal específico por Logic;
+  
   [x] Inserir um novo terminal;
+  
   [x] Alterar um terminal específico por Logic;
+  
   [x] Listar todos os terminais;
 
 ### Pré-requisitos
