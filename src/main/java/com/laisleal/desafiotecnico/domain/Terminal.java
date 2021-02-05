@@ -18,10 +18,10 @@ public class Terminal {
 	@NotNull(message="Preenchimento do campo Logic é obrigatório.")
 	private Integer logic;
 	
-	@NotEmpty(message="Preenchimento do campo serial é obrigatório.")
+	@NotEmpty(message="Preenchimento do campo Serial é obrigatório.")
 	private String serial;
 	
-	@NotEmpty(message="Preenchimento do campo model é obrigatório.")
+	@NotEmpty(message="Preenchimento do campo Model é obrigatório.")
 	private String model;
 	
 	@Min(value=0, message = "Sam não pode ser um valor negativo.")
@@ -30,7 +30,7 @@ public class Terminal {
 	private String ptid;
 	private Integer plat;
 	
-	@NotEmpty(message="Preenchimento do campo version é obrigatório.")
+	@NotEmpty(message="Preenchimento do campo Version é obrigatório.")
 	private String version;
 	
 
