@@ -50,7 +50,7 @@ public class ExceptionHandlerResource extends Throwable{
 	
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	public ResponseEntity<ErrorHandled> MethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
-		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "Valor para chave Logic é muito grande.", System.currentTimeMillis());
+		ErrorHandled error = new ErrorHandled(HttpStatus.BAD_REQUEST.value(), "Chave inválida.", System.currentTimeMillis());
 	
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
