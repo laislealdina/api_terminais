@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.laisleal.desafiotecnico.domain.Terminal;
-import com.laisleal.desafiotecnico.dto.TerminalDTO;
 import com.laisleal.desafiotecnico.repositories.TerminalRepository;
 import com.laisleal.desafiotecnico.services.exceptions.ConstraintViolatedException;
 import com.laisleal.desafiotecnico.services.exceptions.ObjectNoFoundException;
@@ -69,11 +68,15 @@ public class TerminalService {
 	
 	public void validate(String[] terminal) {
 		
+		if (terminal.length != 10) {
+			throw new ConstraintViolatedException("Faltando campo de entrada.");
+		}
+		
 		if (terminal[0] == null || terminal[0].isEmpty()) {
 			throw new ConstraintViolatedException("Preenchimento do campo Logic é obrigatório.");
 		}
 		if (!terminal[0].matches("[0-9]*")) {
-			throw new ConstraintViolatedException("O campo Logic deve conter um valor númerico. " + terminal[0]);
+			throw new ConstraintViolatedException("O campo Logic deve conter um valor númerico.");
 		}
 		
 		if (terminal[1] == null || terminal[1].isEmpty()) {
@@ -87,7 +90,6 @@ public class TerminalService {
 		if (terminal[6] == null || terminal[6].isEmpty()) {
 			throw new ConstraintViolatedException("Preenchimento do campo Version é obrigatório.");
 		}
-		
 	}
 
 	public Terminal update(Terminal obj, Integer logic) {

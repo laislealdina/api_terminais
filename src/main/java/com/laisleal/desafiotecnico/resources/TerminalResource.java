@@ -2,9 +2,9 @@ package com.laisleal.desafiotecnico.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,17 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.laisleal.desafiotecnico.domain.Terminal;
 import com.laisleal.desafiotecnico.dto.TerminalDTO;
 import com.laisleal.desafiotecnico.services.TerminalService;
-
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping(value="/v1/Terminal")
+@RequestMapping(value="/v1/terminal")
 public class TerminalResource {
 	
 	@Autowired
@@ -62,6 +60,8 @@ public class TerminalResource {
 		return ResponseEntity.ok().body(terminalDTO);
 	}
 	
+	@ApiResponses(value = {
+			@ApiResponse(code = 405, message = "Função excluir não está implementada.") })
 	@ApiOperation(value="Função excluir não está implementada.")
 	@RequestMapping(value="/{logic}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable Integer logic) {
@@ -70,9 +70,10 @@ public class TerminalResource {
 	
 	@ApiOperation(value="Retorna todos os Terminais cadastrados.")
 	@RequestMapping(value="/lista", method=RequestMethod.GET)
-	public ResponseEntity<List<Terminal>> findAll() {
+	public ResponseEntity<List<TerminalDTO>> findAll() {
 		List<Terminal> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		List<TerminalDTO> listDTO = list.stream().map(obj -> new TerminalDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 		
 	}
 	

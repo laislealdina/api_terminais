@@ -2,9 +2,6 @@ package com.laisleal.desafiotecnico;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +51,5 @@ public class TerminalServiceTest {
 		assertNotNull(terminal);
 		assertEquals(888888, terminal.getLogic());;	}
 
-//	@Test
-//	public void testList() {
-//		List<Terminal> terminais = service.findAll();
-//		assertEquals(9, terminais.size());
-//	}
+
 }

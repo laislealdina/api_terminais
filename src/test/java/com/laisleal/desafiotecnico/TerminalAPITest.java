@@ -43,14 +43,14 @@ public class TerminalAPITest {
 	
 	@Test
 	public void testLista() {
-		List<Terminal> terminais = getTerminais("/v1/Terminal/lista").getBody();
+		List<Terminal> terminais = getTerminais("/v1/terminal/lista").getBody();
 		assertNotNull(terminais);
 		assertEquals(9, terminais.size());
 	}
 	
 	@Test
 	public void testGetOk() {
-		ResponseEntity<Terminal> terminal_response = getTerminal("/v1/Terminal/888888");
+		ResponseEntity<Terminal> terminal_response = getTerminal("/v1/terminal/888888");
 		assertEquals(terminal_response.getStatusCode(), HttpStatus.OK);
 		Terminal terminal = terminal_response.getBody();
 		assertEquals(888888, terminal.getLogic());
@@ -59,7 +59,7 @@ public class TerminalAPITest {
 	
 	@Test
 	public void testGetNotFound() {
-		ResponseEntity<Terminal> terminal_response = getTerminal("/v1/Terminal/999999");
+		ResponseEntity<Terminal> terminal_response = getTerminal("/v1/terminal/999999");
 		assertEquals(terminal_response.getStatusCode(), HttpStatus.NOT_FOUND);
 		
 	}
@@ -67,11 +67,9 @@ public class TerminalAPITest {
 	@Test
 	public void testSave() {
 
-//		
 		String terminal_text = "121212" + ";" + "222" + "; "+ "PWWIN" + ";" + "" + ";" + "" + ";" + "" + ";" + "V812.1" + "; "+ "" + ";" + "" + ";" + "";
-
 		
-		ResponseEntity<Terminal> response_terminal = rest.postForEntity("/v1/Terminal", terminal_text, Terminal.class);
+		ResponseEntity<Terminal> response_terminal = rest.postForEntity("/v1/terminal", terminal_text, Terminal.class);
 		assertEquals(HttpStatus.CREATED, response_terminal.getStatusCode());
 	
 		String location = response_terminal.getHeaders().get("location").get(0);
