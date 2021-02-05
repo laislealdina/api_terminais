@@ -49,7 +49,7 @@ Execute o XAMPP e inicie os serviços Apache e MySql. Acesse https://localhost/d
 
 - execute o sql: create database terminais;
 
-Caso queira usar um banco com outro nome, ou utilizar outro gerenciador de banco de dados, você precisará acessar "src/main/resources" > application.properties"
+Caso queira usar um banco com outro nome, ou utilizar outro tipo de banco, você precisará acessar "src/main/resources" > application.properties"
 e adicionar as configurações do mesmo (tipo do banco, porta onde o banco será executado, nome do banco, login e senha):
 
  - spring.datasource.url=jdbc:mysql://localhost:${port}/${db_name}?useTimezone=true&serverTimezone=UTC
