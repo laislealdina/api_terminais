@@ -46,6 +46,25 @@ Execute o XAMPP e inicie os serviços Apache e MySql. Acesse https://localhost/d
 
 - execute o sql: create database terminais;
 
+Caso queira usar um banco com outro nome, ou utilizar outro gerenciador de banco de dados, você precisara acessar "src/main/resources" > application.properties"
+e adicionar as configurações do mesmo (url com porta e nome do banco, login, senhj):
+
+ - spring.datasource.url=jdbc:mysql://localhost:${port}/${db_name}?useTimezone=true&serverTimezone=UTC
+ - spring.datasource.username= ${login}
+ - spring.datasource.password= ${password}
+ - spring.jpa.hibernate.ddl-auto=none
+ - spring.jpa.show-sql=true (exibe o Sql executado pelo JPA)
+ - spring.jpa.properties.hibernate.format_sql=true (formata o SQL a ser exibido)
+
+ A propriedade do hibernate "spring.jpa.hibernate.ddl-auto" pode assumir os valores: none, create, validate, update e create-drop.
+
+ - none:         não faz nada com o esquema, não faz alterações no banco de dados;
+ - create :      cria o esquema, os dados anteriormente presentes (se houver) no esquema são perdidos;
+ - update:       atualiza o esquema com os valores fornecidos;
+ - validate:     valida o esquema e não faz nenhuma alteração no banco de dados;
+ - create-drop:  cria o esquema destruindo os dados anteriormente presentes (se houver). Ele também descarta o esquema do banco de dados quando o SessionFactory é fechado;
+
+
 Após ter baixado o projeto do Git, abra o Spring Tool Suite e acesse "File > Open Projects From System...", clique em "Directory...", selecione a pasta do projeto e clique em "Finish". O projeto aparecerá na aba "Project Explorer".
 
 - Execute a aplicação no profile de desenvolvimento. Acesse o arquivo "application.properties" na pasta "src/main/resources" e coloque a seguinte configuração: spring.profiles.active=dev.
