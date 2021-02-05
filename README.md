@@ -50,7 +50,7 @@ Execute o XAMPP e inicie os serviços Apache e MySql. Acesse https://localhost/d
 - execute o sql: create database terminais;
 
 Caso queira usar um banco com outro nome, ou utilizar outro gerenciador de banco de dados, você precisará acessar "src/main/resources" > application.properties"
-e adicionar as configurações do mesmo (url com porta e nome do banco, login, senha):
+e adicionar as configurações do mesmo (tipo do banco, porta onde o banco será executado, nome do banco, login e senha):
 
  - spring.datasource.url=jdbc:mysql://localhost:${port}/${db_name}?useTimezone=true&serverTimezone=UTC
  - spring.datasource.username= ${login}
@@ -58,6 +58,8 @@ e adicionar as configurações do mesmo (url com porta e nome do banco, login, s
  - spring.jpa.hibernate.ddl-auto=none
  - spring.jpa.show-sql=true (exibe o Sql executado pelo JPA)
  - spring.jpa.properties.hibernate.format_sql=true (formata o SQL a ser exibido)
+ 
+ Temos também a questão de horários então vamos deixar o serverTimezone na URL como UTC, para que não ocorra nenhum erro.
 
  A propriedade do hibernate "spring.jpa.hibernate.ddl-auto" pode assumir os valores: none, create, validate, update e create-drop.
 
